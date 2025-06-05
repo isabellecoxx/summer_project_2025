@@ -34,6 +34,7 @@
                 Name: $name
             </div>
             <br>
+
         ";
     }
 
