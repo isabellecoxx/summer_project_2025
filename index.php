@@ -39,4 +39,3 @@
     }
 
     // I will add things like form functionality or other tables if needed :)
-?>
