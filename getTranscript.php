@@ -40,5 +40,3 @@
     foreach ($xml->text as $text) {
         echo trim((string)$text)."\n";
     }
-
-?>
