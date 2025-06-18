@@ -13,6 +13,7 @@
 
     // run command to download subtitles
     $cmd = "yt-dlp --skip-download --write-auto-sub --sub-lang en --sub-format srv1 --output '$videoId.%(ext)s' ".escapeshellarg($videoUrl);
+    // not sure how i can change this...
     exec($cmd, $output, $returnVar);
 
     // error handling if command in exec() fails 
