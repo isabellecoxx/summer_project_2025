@@ -16,8 +16,11 @@
         $user = dbQuery("
             SELECT *
             FROM projects
-            WHERE projectId = $userId;
-        ")->fetch();
+            WHERE projectId :userId",
+            [
+                'userId' => $userId
+            ]
+        )->fetch();
 
         return $user;
 
