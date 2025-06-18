@@ -2,14 +2,13 @@
 
     include("include/init.php");
 
-    // API key and specific video IDs
-    $apiKey = 'AIzaSyABqYVfNGhHMAqBBmxtmtr25U9EGDkhW_Q';
+    // specific video IDs, API key stored in env_constants
     $videoIds = ['xuCn8ux2gbs', '1rZ5VyxZmyM', 'WV29R1M25n8', 'fYH8eSiOf5I'];
 
     foreach($videoIds as $videoId){
 
         // video list youtube API 
-        $apiUrl = "https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id={$videoId}&key={$apiKey}";
+        $apiUrl = "https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id={$videoId}&key=".apiKey;
 
         // fetches content of url and returns it as string
         $response = file_get_contents($apiUrl);
