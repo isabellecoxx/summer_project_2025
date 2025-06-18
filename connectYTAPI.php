@@ -1,6 +1,7 @@
 <?php
 
     include("include/init.php");
+    include("env_constants.php");
 
     // specific video IDs, API key stored in env_constants
     $videoIds = ['xuCn8ux2gbs', '1rZ5VyxZmyM', 'WV29R1M25n8', 'fYH8eSiOf5I'];
