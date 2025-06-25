@@ -1,0 +1,15 @@
+.titleText{
+    border-radius: 3.3em;
+    text-align: center;
+    font-size: 2.5em;
+    color: white;
+    background-color: powderblue;
+    font-family: "Lucidia Handwriting", cursive;
+    padding: 0.2em;
+
+}
+
+.introParagraph{
+    text-align: center;
+    color: white;
+}
