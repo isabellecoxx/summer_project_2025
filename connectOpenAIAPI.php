@@ -2,12 +2,11 @@
     include("include/init.php");
     require_once("connectYTAPI.php");
     include("env_constants.php");
-    
 
+    // call function to retrieve video data from YouTube API
     $youtubeData = getYoutubeData();
 
-    //debugOutput($youtubeData);
-
+    // array that will hold messages to ask ChatGPT
     $input = [];
 
     foreach($youtubeData as $video){
@@ -18,13 +17,9 @@
         $stringTags = implode(',', $tags);
         $rating = $video[4];
 
-        
-
         array_push($input, "The video has a title of '".$title."' a description of '".$description."' a category id of ".$categoryId." a rating of ".$rating." and the following tags: ".$stringTags);
 
     }
- 
-    //debugOutput($input);
 
     // send json file, authenticates with key
     $headers = [
@@ -72,8 +67,3 @@
     $result = json_decode($response, true);
     $text = $result['choices'][0]['message']['content'];
     debugOutput($text);
-    // $finalAnswer = (string) $text;
-    // echo $finalAnswer;
-
-
-
