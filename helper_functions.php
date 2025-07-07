@@ -6,5 +6,5 @@
         $clean = htmlspecialchars( print_r( $array, true ) );
 
         echo"<pre>".$clean."</pre>";
-      
+
     }
