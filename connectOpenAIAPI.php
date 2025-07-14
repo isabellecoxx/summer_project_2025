@@ -31,15 +31,21 @@
     $data = [
         "model" => "gpt-4o", 
         "messages" => [
-            ["role" => "user", "content" => "Given this information: ".$input[1]." generate potential content warnings for the video in this EXACT format, no preceding words:
-                Channel Name: NAME HERE
-                Profanity: YES OR NO
-                Violence: YES OR NO
-                Political Content: YES OR NO
-                Suggestive Content: YES OR NO
-                Substance Use: YES OR NO
-                Horror/Disturbing Themes: YES OR NO
-                Safety Rating: G, PG, PG13, R"]
+            ["role" => "user", "content" => "Given this information: ".$input[0]."
+            check for the presence of profanity, violence, political content, suggestive content, substance use, and horror/disturbing themes.
+            Please return the data in the following format. It must be valid JSON with no other content at all. Do not put ```json at the top. The first character should be {.
+{
+    \"Channel Name\": \"NAME HERE\", // the name of the channel
+    \"Profanity\": true/false, // profanity present or not
+    \"Violence\": true/false, // violence present or not
+    \"Political Content\": true/false, // political content present or not
+    \"Suggestive Content\": true/false, // suggestive content present or not
+    \"Substance Use\": true/false, // substance use present or not
+    \"Horror/Disturbing Themes\": true/false, // horror/disturbing themes present or not
+    \"Safety Rating\": G/PG/PG13/R // safety rating of the video
+    
+}"
+            ]
         ],
         "temperature" => 0.7
     ];
