@@ -1,0 +1,28 @@
+{
+  "name": "Youtube Content Warnings",
+  "description": "This extension provides content warnings for YouTube videos.",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "output.html",
+    "default_icon": "youtube.png"
+  },
+    "content_scripts": [
+    {
+      "js": ["warning.js"],
+      "matches": [
+        "*://www.youtube.com/*"
+      ]
+    }
+  ],
+  "host_permissions": [
+    "http://localhost:8888/*"
+  ],
+  "permissions": ["activeTab", "scripting", "storage"],
+  "web_accessible_resources": [
+  {
+    "resources": ["warning.png"],
+    "matches": ["<all_urls>"]
+  }
+]
+}
