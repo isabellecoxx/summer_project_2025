@@ -1,6 +1,7 @@
-function saveOptions() {
+const checkboxIds = ['Profanity', 'Violence', 'Politics', 'Substances', 'Horrer'];
 
-  const checkboxIds = ['Profanity', 'Violence', 'Politics', 'Substances', 'Horrer'];
+function saveOptions() {
+  
   let options = {};
 
   // loop through each checkbox id and save its state
@@ -19,8 +20,6 @@ function saveRange(){
 }
 
 function restoreOptions() {
-
-  const checkboxIds = ['Profanity', 'Violence', 'Politics', 'Substances', 'Horrer'];
   // retrieve the saved state of each checkbox and set it
   chrome.storage.sync.get(checkboxIds, (items) => {
     checkboxIds.forEach(id => {
@@ -48,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
   restoreOptions();
   restoreRange();
 
-  const checkboxIds = ['Profanity', 'Violence', 'Politics', 'Substances', 'Horrer'];
 });
 
 let ReviewThemes =[];
@@ -59,7 +57,7 @@ document.getElementById('saveButton').addEventListener('click', () => {
   saveOptions();
   saveRange();
   // log option settings
-  chrome.storage.sync.get(['Profanity', 'Violence', 'Politics', 'Substances', 'Horrer'], function(items) {
+  chrome.storage.sync.get(checkboxIds, function(items) {
     // `items` is an object containing all synced items (if `null` is passed as the first argument)
     console.log("All items in chrome.storage.sync:", items);
 
