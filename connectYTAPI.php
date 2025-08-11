@@ -24,9 +24,6 @@
         // access specific (and only) video in the array  
         $video = $data['items'][0];
 
-        // Title and Description
-        $title = $video['snippet']['title'];
-        $description = $video['snippet']['description'];
 
         // Tags (if available)
         if (!empty($video['snippet']['tags'])) {
@@ -37,9 +34,6 @@
             $tags = [];
             $tagsString = "none";
         }
-
-        // Category Id
-        $categoryId = $video['snippet']['categoryId'];
 
         // Rating
         if (!empty($video['contentDetails']['contentRating'])) {
@@ -54,9 +48,9 @@
         
         // return an array with keys for each important piece of information
         return [
-            'title' => $title,
-            'description' => $description,
-            'categoryId' => $categoryId,
+            'title' => $video['snippet']['title'],
+            'description' => $video['snippet']['description'];,
+            'categoryId' => $video['snippet']['categoryId'],
             'tags' => $tags,
             'tagsString' => $tagsString,
             'rating' => $rating
