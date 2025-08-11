@@ -29,12 +29,13 @@
         $description = $video['snippet']['description'];
 
         // Tags (if available)
-        $tags=[];
         if (!empty($video['snippet']['tags'])) {
             $tags = $video['snippet']['tags'];
+            $tagsString = implode(',', $tags);
         }
         else{
-            $tags = "none";
+            $tags = [];
+            $tagsString = "none";
         }
 
         // Category Id
@@ -57,6 +58,7 @@
             'description' => $description,
             'categoryId' => $categoryId,
             'tags' => $tags,
+            'tagsString' => $tagsString,
             'rating' => $rating
         ];
     }
