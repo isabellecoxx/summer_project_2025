@@ -20,16 +20,12 @@
     // retrieves video data from YouTube API and returns an array with important content
     $video = getYoutubeData($videoId);
 
-    $title = $video['title'];
-    $description = $video['description'];
-    $categoryId = $video['categoryId'];
     $tags = $video['tags'];
     $stringTags = implode(',', $tags);
 
-    $rating = $video['rating'];
 
     // variable that will hold the message to ask ChatGPT
-    $input = "The video has a title of '".$title."' a description of '".$description."' a category id of ".$categoryId." a rating of ".$rating." and the following tags: ".$stringTags;
+    $input = "The video has a title of '".$video['title']."' a description of '".$video['description']."' a category id of ".$video['categoryId']." a rating of ".$video['rating']." and the following tags: ".$stringTags;
 
     // send json file, authenticates with key
     $headers = [
