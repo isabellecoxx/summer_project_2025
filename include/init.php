@@ -11,6 +11,5 @@
     // so other functions have access to the database
 
     require_once('db_query.php');
-    require_once('common_components.php');
     require_once('helper_functions.php');
     require_once('user.php');
