@@ -9,41 +9,56 @@
   <body>
     <h1 class="header">SETTINGS</h1>
 
-    <div class="page-flex">
+    <div class="page-flex" id="page-flex">
 
       <!--FLEX ITEM ONE FOP TOGGLES-->
-      <div class="toggle-box">
+      <div class="toggle-box" id="toggle-box">
         <div class="title-row">
           <h3>TOGGLES</h3>
         </div>
-        <div class="row">
-            <p class="body">Profanity   </p>
+        <div class="row" id="toggle-1">
+            <p class="body">Profanity</p>
             <input type="checkbox" style="justify-content: center;" id="Profanity">
             <label for="Profanity" class="toggle-switch"></label>
+            <button class="img-button remove-toggle" type="button">
+              <img src="x.png" alt="X" width="100%" height="100%" style="object-fit: cover;">
+            </button>
         </div>
 
-        <div class="row">
-            <p class="body">Violence  </p>
+        <div class="row" id="toggle-2">
+            <p class="body">Violence</p>
             <input type="checkbox" style="justify-content: center;" id="Violence">
             <label for="Violence" class="toggle-switch"></label>
+            <button class="img-button remove-toggle" type="button">
+              <img src="x.png" alt="X" width="100%" height="100%" style="object-fit: cover;">
+            </button>
         </div>
 
-        <div class="row">
-            <p class="body">Political Content   </p>
+        <div class="row" id="toggle-3">
+            <p class="body">Political Content</p>
             <input type="checkbox" style="justify-content: center;" id="Politics">
             <label for="Politics" class="toggle-switch"></label>
+            <button class="img-button remove-toggle" type="button">
+              <img src="x.png" alt="X" width="100%" height="100%" style="object-fit: cover;">
+            </button>
         </div>
 
-        <div class="row">
-            <p class="body">Horror/Disturbing Themes   </p>
-            <input type="checkbox" style="justify-content: center;" id="Horrer">
-            <label for="Horrer" class="toggle-switch"></label>
+        <div class="row" id="toggle-4">
+            <p class="body">Horror</p>
+            <input type="checkbox" style="justify-content: center;" id="Horror">
+            <label for="Horror" class="toggle-switch"></label>
+            <button class="img-button remove-toggle" type="button">
+              <img src="x.png" alt="X" width="100%" height="100%" style="object-fit: cover;">
+            </button>
         </div>
 
-        <div class="row">
-            <p class="body">Substance Use   </p>
+        <div class="row" id="toggle-5">
+            <p class="body">Substance Use</p>
             <input type="checkbox" style="justify-content: center;" id="Substances">
             <label for="Substances" class="toggle-switch"></label>
+            <button class="img-button remove-toggle" type="button">
+              <img src="x.png" alt="X" width="100%" height="100%" style="object-fit: cover;">
+            </button>
         </div>
 
       </div>
@@ -74,8 +89,9 @@
           </div>
           <div class="row">
             <form class="toggle-form">
-              <input type="text">
-              <input type="submit">
+              <input type="text" id="add-toggle" maxlength="15">
+              <button type="button" class="add-toggle">Add Toggle</button>
+              <!-- <input type="submit"> -->
             </form>
           </div>
 
@@ -87,8 +103,8 @@
 
           <div class="border"></div>
 
-          <div style="text-align: center; margin-top: 20px;" onclick="settingsSavedPopupMessage()">
-            <button id="saveButton" class="button">Save Changes</button>
+          <div style="text-align: center; margin-top: 20px;">
+            <button type="button" id="saveButton" class="button">Save Changes</button>
           </div>
         </div>
 
@@ -99,19 +115,9 @@
 
     </div>
 
-
-    <script>
-      function settingsSavedPopupMessage() {
-        alert("Settings saved successfully!");
-      }
-    </script>
-
       <br> 
 
 
-
-    <br>
-    <br>
 
 
     <script src="options.js"></script>
