@@ -24,8 +24,8 @@
         // access specific (and only) video in the array  
         $video = $data['items'][0];
 
-
         // Tags (if available)
+        $tags=[];
         if (!empty($video['snippet']['tags'])) {
             $tags = $video['snippet']['tags'];
             $tagsString = implode(',', $tags);
@@ -49,7 +49,7 @@
         // return an array with keys for each important piece of information
         return [
             'title' => $video['snippet']['title'],
-            'description' => $video['snippet']['description'];,
+            'description' => $video['snippet']['description'],
             'categoryId' => $video['snippet']['categoryId'],
             'tags' => $tags,
             'tagsString' => $tagsString,
