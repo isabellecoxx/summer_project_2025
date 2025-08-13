@@ -1,0 +1,39 @@
+html {
+  width: 400px; 
+  height: 50px; 
+  background-color: rgb(228, 227, 227);
+}
+.page-flex{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+.headerDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4169E1;
+    padding: 10px 10px;
+    border-radius: 20px;
+    gap: 10px;
+}
+.header{
+    text-align: center;
+    font-size: 20px;
+    color: white;
+}
+.body{
+    text-align: center;
+    font-size: 15px;
+    color: black;
+    margin-top: 20px;
+    display: inline;
+}
+ .box-1{
+    display: flexbox;
+    background-color: #d2d2d29e;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+} 
+
