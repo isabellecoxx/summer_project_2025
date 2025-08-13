@@ -1,0 +1,36 @@
+{
+  "name": "Course Registration",
+  "description": "This extension makes course registration less painful!",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "output.html",
+    "default_icon": "billiken.png"
+  },
+    "content_scripts": [
+    {
+      "js": ["search.js", "listing.js"],
+      "css": ["content.css"],
+      "matches": [
+        "*://courses.slu.edu/*"
+      ],
+      "type": "module"
+    }
+  ],
+  "host_permissions": [
+    "http://localhost:8888/*",
+    "https://www.ratemyprofessors.com/*",
+    "https://courses.slu.edu/api/*"
+  ],
+  "permissions": ["activeTab", "scripting", "storage", "tabs", "webRequest", "webRequestBlocking", "https://courses.slu.edu/api/*"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "web_accessible_resources": [
+  {
+    "resources": ["checkmark.png", "x.png"],
+    "matches": ["<all_urls>"]
+  }
+]
+}
