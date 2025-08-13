@@ -1,25 +1,28 @@
 <?php
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type");
+
     include("include/init.php");
     require_once("connectYTAPI.php");
     include("env_constants.php");
 
-    // call function to retrieve video data from YouTube API
-    $youtubeData = getYoutubeData();
+    acceptCorsRequestsFromTheChromeExtension();
 
-    // array that will hold messages to ask ChatGPT
-    $input = [];
+    // save videoId, ThemesToReview, and RangeSlider from GET request as variables
+    $videoId = $_GET['videoId'];
+    $ThemesToReviewJSON = $_GET['reviewThemes'];
+    $ThemesToReview = json_decode($ThemesToReviewJSON, true);
+    $RangeSliderJSON = $_GET['rangeSlider'];
+    $RangeSlider = json_decode($RangeSliderJSON, true);
 
-    foreach($youtubeData as $video){
-        $title = $video[0];
-        $description = $video[1];
-        $categoryId = $video[2];
-        $tags = $video[3];
-        $stringTags = implode(',', $tags);
-        $rating = $video[4];
 
-        array_push($input, "The video has a title of '".$title."' a description of '".$description."' a category id of ".$categoryId." a rating of ".$rating." and the following tags: ".$stringTags);
+    // retrieves video data from YouTube API and returns an array with important content
+    $video = getYoutubeData($videoId);
+    $stringTags = $video['tagsString'];
 
-    }
+    // variable that will hold the message to ask ChatGPT
+    $input = "The video has a title of '".$video['title']."' a description of '".$video['description']."' a category id of ".$video['categoryId']." a rating of ".$video['rating']." and the following tags: ".$stringTags;
 
     // send json file, authenticates with key
     $headers = [
@@ -27,24 +30,51 @@
         "Authorization: Bearer ".openAIApiKey
     ];
 
-    // tell OpenAI which model to use, gives message to interpret, temp is response variance
+    //This array maps type codes (what's sent to us from the frontend) with English descriptions for ChatGPT
+    $ContentWarningTypes = [
+        'Profanity' => 'Profanity',
+        'Violence' => 'Violence',
+        'Politics' => 'Political Content',
+        'Horrer' => 'Horrer/Disturbing Themes',
+        'Substances' => 'Substance Use'
+    ];
+
+    $ThemeString = "";
+    foreach($ThemesToReview as $Theme=>$Value) {
+        if($Value){
+            $ThemeString .= "- ".$ContentWarningTypes[$Theme]."\n";
+        }
+    }
+
+
+    $ReturnFormatString = "{\n";
+    foreach($ContentWarningTypes as $Key => $Type){
+        if($ThemesToReview[$Key]){
+             $ReturnFormatString .= "\"$Key\": true/false //".$Type." present or not\n";
+        }
+        else{
+            $ReturnFormatString .= "\"$Key\": null //we aren't checking for this, so ignore it\n";
+        }
+    }
+    $ReturnFormatString .= "\n}";
+
+    
+    
+
+    // send request to OpenAI API with the input as the prompt
     $data = [
         "model" => "gpt-4o", 
         "messages" => [
-            ["role" => "user", "content" => "Given this information: ".$input[0]."
-            check for the presence of profanity, violence, political content, suggestive content, substance use, and horror/disturbing themes.
+            ["role" => "user", "content" => "Given this information: ".$input."
+            check for the presence of the following types of content:
+                ".$ThemeString." 
+            
+            Detect with a sensitivity setting of ".$RangeSlider." out of 100. The higher the score the more sensitive the output should be to even minor mentions of the content.
+            If the score is low it should be relatively insensitive to mentions of the content except for extreme cases.
+                
             Please return the data in the following format. It must be valid JSON with no other content at all. Do not put ```json at the top. The first character should be {.
-{
-    \"Channel Name\": \"NAME HERE\", // the name of the channel
-    \"Profanity\": true/false, // profanity present or not
-    \"Violence\": true/false, // violence present or not
-    \"Political Content\": true/false, // political content present or not
-    \"Suggestive Content\": true/false, // suggestive content present or not
-    \"Substance Use\": true/false, // substance use present or not
-    \"Horror/Disturbing Themes\": true/false, // horror/disturbing themes present or not
-    \"Safety Rating\": G/PG/PG13/R // safety rating of the video
-    
-}"
+            $ReturnFormatString
+            "
             ]
         ],
         "temperature" => 0.7
@@ -69,7 +99,30 @@
     // close session
     curl_close($ch);
 
-    // decode and print the result
+    // decode the response from OpenAI API
     $result = json_decode($response, true);
     $text = $result['choices'][0]['message']['content'];
-    debugOutput($text);
+    $textDecoded = json_decode($text, true);
+    
+
+    // create array with keys for each content warning that was detected
+    $warnings = [];
+    foreach($textDecoded as $key => $value) {
+        if ($value == true){
+            array_push($warnings, $key);
+        }
+    }
+
+    // output the warnings in a readable format
+    if (empty($warnings)) {
+        echo "no content warnings";
+    }
+    else if (count($warnings) == 1) {
+        echo $warnings[0]." detected";
+    }
+    else if (count($warnings) == 2) {
+        echo implode(" and ", $warnings)." detected";
+    }
+    else {
+        echo implode(", ", $warnings)." detected";
+    }

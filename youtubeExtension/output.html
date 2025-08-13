@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Settings</title>
+  </head>
+  <body>
+    <h1 class="header">SETTINGS</h1>
+
+    <div class="page-flex">
+
+      <!--FLEX ITEM ONE FOP TOGGLES-->
+      <div class="toggle-box">
+        <div class="title-row">
+          <h3>TOGGLES</h3>
+        </div>
+        <div class="row">
+            <p class="body">Profanity   </p>
+            <input type="checkbox" style="justify-content: center;" id="Profanity">
+            <label for="Profanity" class="toggle-switch"></label>
+        </div>
+
+        <div class="row">
+            <p class="body">Violence  </p>
+            <input type="checkbox" style="justify-content: center;" id="Violence">
+            <label for="Violence" class="toggle-switch"></label>
+        </div>
+
+        <div class="row">
+            <p class="body">Political Content   </p>
+            <input type="checkbox" style="justify-content: center;" id="Politics">
+            <label for="Politics" class="toggle-switch"></label>
+        </div>
+
+        <div class="row">
+            <p class="body">Horror/Disturbing Themes   </p>
+            <input type="checkbox" style="justify-content: center;" id="Horrer">
+            <label for="Horrer" class="toggle-switch"></label>
+        </div>
+
+        <div class="row">
+            <p class="body">Substance Use   </p>
+            <input type="checkbox" style="justify-content: center;" id="Substances">
+            <label for="Substances" class="toggle-switch"></label>
+        </div>
+
+      </div>
+
+
+      <div class="left-items">
+
+        <!--FLEX ITEM TWO FOP SENSITIVITY-->
+        <div class="sensitivity-box">
+
+          <div class="title-row">
+            <h3>SENSITIVITY</h3>
+          </div>
+          <div class="row">
+            <div class ="slider-container">
+              <input type="range" min="1" max="100" value="1" id="my-range" class="slider">
+            </div>
+          </div>
+          <p style="text-align: center;">Value: <span id="demo"></span></p>
+
+        </div>
+
+        <!--FLEX ITEM THREE FOR OTHER-->
+        <div class="sensitivity-box">
+
+          <div class="title-row">
+            <h3>ADD TOGGLE</h3>
+          </div>
+          <div class="row">
+            <form class="toggle-form">
+              <input type="text">
+              <input type="submit">
+            </form>
+          </div>
+
+        </div>
+
+        <!--FLEX ITEM FOUR FOR SAVE BUTTON-->
+
+        <div>
+
+          <div class="border"></div>
+
+          <div style="text-align: center; margin-top: 20px;" onclick="settingsSavedPopupMessage()">
+            <button id="saveButton" class="button">Save Changes</button>
+          </div>
+        </div>
+
+      </div>
+
+
+      
+
+    </div>
+
+
+    <script>
+      function settingsSavedPopupMessage() {
+        alert("Settings saved successfully!");
+      }
+    </script>
+
+      <br> 
+
+
+
+    <br>
+    <br>
+
+
+    <script src="options.js"></script>
+  </body>
+</html>
+

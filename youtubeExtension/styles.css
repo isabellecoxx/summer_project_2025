@@ -1,0 +1,142 @@
+html {
+  width: 450px; 
+  height: 80px; 
+  background-color: rgb(228, 227, 227);
+}
+.header{
+    text-align: center;
+    font-size: 24px;
+    background-color: rgb(235, 25, 67);
+    padding: 10px 10px;
+    border-radius: 20px;
+    color: white;
+}
+.body{
+    text-align: center;
+    font-size: 14px;
+    color: black;
+    margin-top: 20px;
+    display: inline;
+}
+.row{
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.toggle-switch{
+    background-color: #d2d2d2;
+    width: 50px;
+    height: 25px;
+    border-radius: 200px;
+    cursor: pointer;
+    position: relative;
+    transition: 0.2s;
+}
+
+.toggle-switch::before{
+    position: absolute;
+    content:'';
+    background-color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 200px;
+    margin: 5px;
+    transform: translateY(-15%);
+    transition: 0.2s;
+}
+input[type="checkbox"]:checked + .toggle-switch{
+    background-color: rgb(235, 25, 67);
+}
+input[type="checkbox"]:checked + .toggle-switch::before{
+    transform: translate(20px, -15%);
+}
+input[type="checkbox"]{
+    display: none;
+}
+.button{
+    background-color: rgb(235, 25, 67);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.button:hover {
+    background-color: rgb(200, 20, 60);
+}
+.button:active {
+    background-color: rgb(180, 15, 50);
+    transform: scale(0.95);
+}
+.border{
+    background-color: rgb(200, 20, 60);
+    width: 100%;
+    height: 2px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.toggle-box{
+    display: flexbox;
+    float: left;
+    background-color: #d2d2d29e;
+    border-radius: 5px;
+}
+.save-flex{
+    display: flexbox;
+    position: fixed;
+    bottom: 0;
+
+    /* And if you want the div to be full-width: */
+    left: 0;
+    right: 0;
+}
+.title-row{
+    text-align: center;
+    color: white;
+    background-color:rgb(235, 25, 67);
+    padding: 0.01px;
+
+}
+.sensitivity-box{
+    display: flexbox;
+    float: right;
+    background-color: #d2d2d29e;
+    width: 195px;
+}
+.page-flex{
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+.left-items{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+
+}
+.slider-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.slider {
+    width: 80%;
+    accent-color: rgb(235, 25, 67);
+}
+.toggle-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+input[type="text"]:focus {
+  outline: 2px solid rgb(235, 25, 67); 
+}

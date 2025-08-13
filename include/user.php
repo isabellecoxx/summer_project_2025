@@ -1,6 +1,6 @@
 <?php
 
-    // Functions that use queries to access information from the user table
+    // functions that use queries to access information from the user table
     function getUsers(){
 
         $users = dbQuery("

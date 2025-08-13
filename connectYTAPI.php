@@ -3,68 +3,56 @@
     include("include/init.php");
     include("env_constants.php");
 
-    function getYoutubeData(){
 
-        // specific video IDs, API key stored in env_constants
-        $videoIds = ['xuCn8ux2gbs', '1rZ5VyxZmyM', 'WV29R1M25n8', 'fYH8eSiOf5I'];
+    function getYoutubeData($videoId){
 
-        // array that will store important information from each youtube video
-        $importantContent = [];
+        // API URL to fetch video data
+        $apiUrl = "https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id={$videoId}&key=".ytApiKey;
 
-        foreach($videoIds as $videoId){
+        // fetches content of the URL and returns it as string
+        $response = file_get_contents($apiUrl);
 
-            // video list youtube API 
-            $apiUrl = "https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id={$videoId}&key=".ytApiKey;
+        // converts json returned from file_get_contents() to php array
+        $data = json_decode($response, true);
 
-            // fetches content of url and returns it as string
-            $response = file_get_contents($apiUrl);
+        // error handling if video not found
+        if (empty($data['items'])){
+            echo "video not found";
+            return null;
+        }
+                
+        // access specific (and only) video in the array  
+        $video = $data['items'][0];
 
-            // converts json returned from file_get_contents() to php array
-            $data = json_decode($response, true);
 
-            if (empty($data['items'])){
-                echo "video not found";
-                continue;
-            }
-
-            // access specific (and only) video in the array
-            $video = $data['items'][0];
-
-            // Title and Description
-            $title = $video['snippet']['title'];
-            $description = $video['snippet']['description'];
-
-            // Tags (if available)
-            $tags=[];
-            if (!empty($video['snippet']['tags'])) {
-                foreach($video['snippet']['tags'] as $tag){
-                    array_push($tags, $tag);
-                }
-            }
-            else{
-                $tags = "none";
-            }
-
-            // Category Id
-            $categoryId = $video['snippet']['categoryId'];
-
-            // Captions (NOT USEFUL YET SO COMMENTED OUT FOR NOW)
-            // echo "<br>";
-            // echo "Captions: ".$video['contentDetails']['caption']."<br>";
-
-            // Rating
-            if (!empty($video['contentDetails']['contentRating'])) {
-                 if (!empty($video['contentDetails']['contentRating']['ytRating'])) {
-                    $rating = $video['contentDetails']['contentRating']['ytRating'];
-                 } else {
-                      $rating = "rating info found, no age restriction tag";
-                  }
-                } else {
-                $rating = "no rating";
-                }
-
-            array_push($importantContent, [$title, $description, $categoryId, $tags, $rating]);
+        // Tags (if available)
+        if (!empty($video['snippet']['tags'])) {
+            $tags = $video['snippet']['tags'];
+            $tagsString = implode(',', $tags);
+        }
+        else{
+            $tags = [];
+            $tagsString = "none";
         }
 
-        return $importantContent;
+        // Rating
+        if (!empty($video['contentDetails']['contentRating'])) {
+            if (!empty($video['contentDetails']['contentRating']['ytRating'])) {
+                $rating = $video['contentDetails']['contentRating']['ytRating'];
+                } else {
+                    $rating = "rating info found, no age restriction tag";
+                }
+            } else {
+                $rating = "no rating";
+            }
+        
+        // return an array with keys for each important piece of information
+        return [
+            'title' => $video['snippet']['title'],
+            'description' => $video['snippet']['description'];,
+            'categoryId' => $video['snippet']['categoryId'],
+            'tags' => $tags,
+            'tagsString' => $tagsString,
+            'rating' => $rating
+        ];
     }
