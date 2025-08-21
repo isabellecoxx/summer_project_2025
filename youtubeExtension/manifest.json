@@ -7,9 +7,10 @@
     "default_popup": "output.html",
     "default_icon": "youtube.png"
   },
-    "content_scripts": [
+  "content_scripts": [
     {
       "js": ["warning.js"],
+      "css": ["warning.css"],
       "matches": [
         "*://www.youtube.com/*"
       ]
@@ -20,9 +21,9 @@
   ],
   "permissions": ["activeTab", "scripting", "storage"],
   "web_accessible_resources": [
-  {
-    "resources": ["warning.png"],
-    "matches": ["<all_urls>"]
-  }
-]
+    {
+      "resources": ["warning.png"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

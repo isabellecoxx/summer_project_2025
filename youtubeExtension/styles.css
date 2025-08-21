@@ -83,6 +83,7 @@ input[type="checkbox"]{
     display: flexbox;
     float: left;
     background-color: #d2d2d29e;
+    width: 500px;
     border-radius: 5px;
 }
 .save-flex{
@@ -99,6 +100,7 @@ input[type="checkbox"]{
     color: white;
     background-color:rgb(235, 25, 67);
     padding: 0.01px;
+    border-radius: 5px;
 
 }
 .sensitivity-box{
@@ -106,11 +108,13 @@ input[type="checkbox"]{
     float: right;
     background-color: #d2d2d29e;
     width: 195px;
+    border-radius: 5px;
 }
 .page-flex{
     display: flex;
     gap: 10px;
     align-items: flex-start;
+    margin: 10px;
 }
 .left-items{
     display: flex;
@@ -139,4 +143,72 @@ input[type="checkbox"]{
 }
 input[type="text"]:focus {
   outline: 2px solid rgb(235, 25, 67); 
+}
+.img-button{
+    padding: 0;
+    border: none;
+    background: none;
+    width: 20px;
+    height: 20px;
+}
+.img-button:hover{
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    border: none;
+    background: none; 
+    cursor: pointer; 
+}
+.img-button:active{
+    width: 15px;
+    height: 15px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer; 
+}
+.add-toggle{
+    color: white;
+    background-color: rgb(235, 25, 67);
+    border-color: white;
+    border-radius: 5px;
+}
+/*
+CSS for message div
+*/
+.message-container{
+    position: fixed;
+    margin: 0 auto;
+    padding: 20px 10px;
+    width: 300px;
+    position: fixed;
+    top: 50%;
+    left: 15%;
+    background-color: rgb(235, 25, 67);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.popup-message{
+    text-align: center;
+    font-weight: bold;
+}
+.warning-img{
+    width: 18px;
+    height: 15px;
+    margin-right: 10px;
+}
+.x-button{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.x-icon{
+    width: 18px;
+    height: 15px;
+    margin-right: 10px;
 }

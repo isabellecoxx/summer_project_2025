@@ -1,0 +1,52 @@
+.wrapper{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.rating{
+    color: white;
+    background-color: #795D3E; 
+    padding: 5px;
+    border-radius: 5px;
+}
+.professor-search-info{
+    position: relative !important;
+    display: inline-block !important;
+    cursor: default;
+    padding: 1px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    width: auto;
+    align-self: flex-start;
+}
+.professor-search-popup{
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 8px;
+    border-radius: 6px;
+    white-space: normal;
+    font-size: 12px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+    width: 200px;
+    max-width: 200px;
+    width: max-content;
+    white-space: normal;
+    word-wrap: break-word;
+    left: auto;
+    right: 100%;
+    margin-right: 5px;   
+}
+.visible{
+    visibility: visible !important;
+    opacity: 1 !important;
+}
