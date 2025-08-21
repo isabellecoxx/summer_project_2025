@@ -13,3 +13,4 @@
     require_once('db_query.php');
     require_once('helper_functions.php');
     require_once('user.php');
+	require_once("env_constants.php");
