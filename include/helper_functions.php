@@ -1,6 +1,6 @@
 <?php
 
-    require_once("env_constants.php");
+    require_once("init.php");
     
     // function that formats output, easier to read than var_dump()
     function debugOutput($array){
